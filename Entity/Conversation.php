@@ -175,5 +175,38 @@ class Conversation
     {
         return $this->lastMessage;
     }
-}
 
+    /**
+     * Add message
+     *
+     * @param PrivateMessage $message
+     *
+     * @return Conversation
+     */
+    public function addMessage(PrivateMessage $message)
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param PrivateMessage $message
+     */
+    public function removeMessage(PrivateMessage $message)
+    {
+        $this->messages->removeElement($message);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+}
