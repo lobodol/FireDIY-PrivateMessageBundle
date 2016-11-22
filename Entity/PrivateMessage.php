@@ -1,0 +1,173 @@
+<?php
+
+namespace FireDIY\PrivateMessageBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * PrivateMessage
+ *
+ * @ORM\Table(name="private_message")
+ * @ORM\Entity(repositoryClass="FireDIY\PrivateMessageBundle\Repository\PrivateMessageRepository")
+ */
+class PrivateMessage
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var User
+     *
+     * @ORM\OneToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
+     */
+    private $author;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="body", type="text")
+     * @Assert\NotBlank()
+     */
+    private $body;
+
+    /**
+     * @var Conversation
+     *
+     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\Conversation")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
+     */
+    private $conversation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $created;
+
+    /**
+     * PrivateMessage constructor.
+     */
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set author
+     *
+     * @param integer $author
+     *
+     * @return PrivateMessage
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return int
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set body
+     *
+     * @param string $body
+     *
+     * @return PrivateMessage
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * Set conversation
+     *
+     * @param Conversation $conversation
+     *
+     * @return PrivateMessage
+     */
+    public function setConversation(Conversation $conversation)
+    {
+        $this->conversation = $conversation;
+
+        return $this;
+    }
+
+    /**
+     * Get conversation
+     *
+     * @return int
+     */
+    public function getConversation()
+    {
+        return $this->conversation;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return PrivateMessage
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+}
+

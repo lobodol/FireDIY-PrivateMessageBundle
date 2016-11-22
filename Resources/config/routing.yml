@@ -1,0 +1,3 @@
+fd_private_message_homepage:
+    path:     /
+    defaults: { _controller: FDPrivateMessageBundle:Default:index }
