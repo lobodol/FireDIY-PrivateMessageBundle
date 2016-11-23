@@ -25,7 +25,7 @@ class PrivateMessage
     /**
      * @var User
      *
-     * @ORM\OneToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
@@ -77,11 +77,11 @@ class PrivateMessage
     /**
      * Set author
      *
-     * @param integer $author
+     * @param User $author
      *
      * @return PrivateMessage
      */
-    public function setAuthor($author)
+    public function setAuthor(User $author)
     {
         $this->author = $author;
 
@@ -91,7 +91,7 @@ class PrivateMessage
     /**
      * Get author
      *
-     * @return int
+     * @return User
      */
     public function getAuthor()
     {

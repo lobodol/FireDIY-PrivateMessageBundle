@@ -3,13 +3,19 @@
 namespace FireDIY\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Conversation
  *
- * @ORM\Table(name="conversation")
+ * @ORM\Table(name="conversation", uniqueConstraints={@UniqueConstraint(name="unique_conversation", columns={"first_message"})})
  * @ORM\Entity(repositoryClass="FireDIY\PrivateMessageBundle\Repository\ConversationRepository")
+ * @UniqueEntity(
+ *     fields={"first_message"},
+ *     message="Cannot duplicate a conversation"
+ * )
  */
 class Conversation
 {
@@ -21,6 +27,11 @@ class Conversation
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FireDIY\PrivateMessageBundle\Entity\Recipient", mappedBy="conversation")
+     */
+    private $recipients;
 
     /**
      * @var string
@@ -43,7 +54,7 @@ class Conversation
      * @var PrivateMessage
      *
      * @ORM\OneToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\PrivateMessage", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL", name="first_message")
      * @Assert\Valid()
      */
     private $firstMessage;
@@ -52,7 +63,7 @@ class Conversation
      * @var PrivateMessage
      *
      * @ORM\OneToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\PrivateMessage", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Assert\Valid()
      */
     private $lastMessage;
@@ -145,7 +156,7 @@ class Conversation
     /**
      * Get firstMessage
      *
-     * @return int
+     * @return PrivateMessage
      */
     public function getFirstMessage()
     {
@@ -155,11 +166,11 @@ class Conversation
     /**
      * Set lastMessage
      *
-     * @param integer $lastMessage
+     * @param PrivateMessage $lastMessage
      *
      * @return Conversation
      */
-    public function setLastMessage($lastMessage)
+    public function setLastMessage(PrivateMessage $lastMessage)
     {
         $this->lastMessage = $lastMessage;
 
@@ -169,7 +180,7 @@ class Conversation
     /**
      * Get lastMessage
      *
-     * @return int
+     * @return PrivateMessage
      */
     public function getLastMessage()
     {
@@ -208,5 +219,39 @@ class Conversation
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Add recipient
+     *
+     * @param \FireDIY\PrivateMessageBundle\Entity\Recipient $recipient
+     *
+     * @return Conversation
+     */
+    public function addRecipient(\FireDIY\PrivateMessageBundle\Entity\Recipient $recipient)
+    {
+        $this->recipients[] = $recipient;
+
+        return $this;
+    }
+
+    /**
+     * Remove recipient
+     *
+     * @param \FireDIY\PrivateMessageBundle\Entity\Recipient $recipient
+     */
+    public function removeRecipient(\FireDIY\PrivateMessageBundle\Entity\Recipient $recipient)
+    {
+        $this->recipients->removeElement($recipient);
+    }
+
+    /**
+     * Get recipients
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRecipients()
+    {
+        return $this->recipients;
     }
 }

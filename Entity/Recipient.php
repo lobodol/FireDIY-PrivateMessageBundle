@@ -3,13 +3,20 @@
 namespace FireDIY\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Recipient
  *
- * @ORM\Table(name="recipient")
+ * @ORM\Table(name="recipient", uniqueConstraints={@UniqueConstraint(name="unique_recipient", columns={"conversation", "user"})})
  * @ORM\Entity(repositoryClass="FireDIY\PrivateMessageBundle\Repository\RecipientRepository")
+ * @UniqueEntity(
+ *     fields={"conversation", "user"},
+ *     errorPath="user",
+ *     message="This user is already in this conversation"
+ * )
  */
 class Recipient
 {
@@ -23,10 +30,10 @@ class Recipient
     private $id;
 
     /**
-     * @var User
+     * @var Conversation
      *
-     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\Conversation")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\Conversation", inversedBy="recipients")
+     * @ORM\JoinColumn(nullable=false, name="conversation")
      * @Assert\Valid()
      */
     private $conversation;
@@ -34,8 +41,8 @@ class Recipient
     /**
      * @var int
      *
-     * @ORM\OneToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false, name="user")
      * @Assert\Valid()
      */
     private $user;
@@ -54,11 +61,11 @@ class Recipient
     /**
      * Set conversation
      *
-     * @param integer $conversation
+     * @param Conversation $conversation
      *
      * @return Recipient
      */
-    public function setConversation($conversation)
+    public function setConversation(Conversation $conversation)
     {
         $this->conversation = $conversation;
 
@@ -68,7 +75,7 @@ class Recipient
     /**
      * Get conversation
      *
-     * @return int
+     * @return Conversation
      */
     public function getConversation()
     {
