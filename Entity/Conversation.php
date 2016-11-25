@@ -31,6 +31,7 @@ class Conversation
 
     /**
      * @ORM\OneToMany(targetEntity="FireDIY\PrivateMessageBundle\Entity\Recipient", mappedBy="conversation")
+     * @Assert\NotNull()
      */
     private $recipients;
 
