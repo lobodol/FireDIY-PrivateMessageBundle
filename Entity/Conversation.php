@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="conversation", uniqueConstraints={@UniqueConstraint(name="unique_conversation", columns={"first_message"})})
  * @ORM\Entity(repositoryClass="FireDIY\PrivateMessageBundle\Repository\ConversationRepository")
  * @UniqueEntity(
- *     fields={"first_message"},
+ *     fields={"firstMessage"},
  *     message="Cannot duplicate a conversation"
  * )
  */
