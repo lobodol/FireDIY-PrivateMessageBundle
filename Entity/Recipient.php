@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="recipient", uniqueConstraints={@UniqueConstraint(name="unique_recipient", columns={"conversation_id", "user_id"})})
  * @ORM\Entity(repositoryClass="FireDIY\PrivateMessageBundle\Repository\RecipientRepository")
  * @UniqueEntity(
- *     fields={"conversation_id", "user_id"},
+ *     fields={"conversation", "user"},
  *     errorPath="user",
  *     message="This user is already in this conversation"
  * )
