@@ -43,7 +43,7 @@ class PrivateMessage
     /**
      * @var Conversation
      *
-     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\Conversation")
+     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\Conversation", inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
