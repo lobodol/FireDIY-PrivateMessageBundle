@@ -17,7 +17,6 @@ class ConversationType extends AbstractType
         $builder
             ->add('subject')
             ->add('firstMessage', PrivateMessageType::class)
-            ->add('save', SubmitType::class, array('label' => 'Send'))
         ;
     }
 
