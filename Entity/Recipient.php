@@ -4,6 +4,7 @@ namespace FireDIY\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -47,7 +48,6 @@ class Recipient
      */
     private $user;
 
-
     /**
      * Get id
      *
@@ -85,7 +85,7 @@ class Recipient
     /**
      * Set user
      *
-     * @param integer $user
+     * @param UserInterface $user
      *
      * @return Recipient
      */
@@ -99,7 +99,7 @@ class Recipient
     /**
      * Get user
      *
-     * @return int
+     * @return UserInterface
      */
     public function getUser()
     {

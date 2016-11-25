@@ -4,6 +4,7 @@ namespace FireDIY\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * PrivateMessage
@@ -77,11 +78,11 @@ class PrivateMessage
     /**
      * Set author
      *
-     * @param User $author
+     * @param UserInterface $author
      *
      * @return PrivateMessage
      */
-    public function setAuthor(User $author)
+    public function setAuthor(UserInterface $author)
     {
         $this->author = $author;
 
@@ -91,7 +92,7 @@ class PrivateMessage
     /**
      * Get author
      *
-     * @return User
+     * @return UserInterface
      */
     public function getAuthor()
     {
