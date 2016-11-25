@@ -10,10 +10,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Recipient
  *
- * @ORM\Table(name="recipient", uniqueConstraints={@UniqueConstraint(name="unique_recipient", columns={"conversation", "user"})})
+ * @ORM\Table(name="recipient", uniqueConstraints={@UniqueConstraint(name="unique_recipient", columns={"conversation_id", "user_id"})})
  * @ORM\Entity(repositoryClass="FireDIY\PrivateMessageBundle\Repository\RecipientRepository")
  * @UniqueEntity(
- *     fields={"conversation", "user"},
+ *     fields={"conversation_id", "user_id"},
  *     errorPath="user",
  *     message="This user is already in this conversation"
  * )
@@ -33,16 +33,16 @@ class Recipient
      * @var Conversation
      *
      * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\Conversation", inversedBy="recipients")
-     * @ORM\JoinColumn(nullable=false, name="conversation")
+     * @ORM\JoinColumn(nullable=false, name="conversation_id")
      * @Assert\Valid()
      */
     private $conversation;
 
     /**
-     * @var int
+     * @var \Symfony\Component\Security\Core\User\UserInterface
      *
-     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=false, name="user")
+     * @ORM\ManyToOne(targetEntity="Symfony\Component\Security\Core\User\UserInterface")
+     * @ORM\JoinColumn(nullable=false, name="user_id")
      * @Assert\Valid()
      */
     private $user;

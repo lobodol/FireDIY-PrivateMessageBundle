@@ -23,9 +23,9 @@ class PrivateMessage
     private $id;
 
     /**
-     * @var User
+     * @var \Symfony\Component\Security\Core\User\UserInterface
      *
-     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Symfony\Component\Security\Core\User\UserInterface")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */

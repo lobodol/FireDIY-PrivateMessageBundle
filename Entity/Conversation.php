@@ -4,8 +4,9 @@ namespace FireDIY\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Conversation
@@ -49,6 +50,14 @@ class Conversation
      * @Assert\DateTime()
      */
     private $created;
+
+    /**
+     * @var \Symfony\Component\Security\Core\User\UserInterface
+     *
+     * @ORM\ManyToOne(targetEntity="Symfony\Component\Security\Core\User\UserInterface")
+     * @Assert\Valid()
+     */
+    private $author;
 
     /**
      * @var PrivateMessage
@@ -224,11 +233,11 @@ class Conversation
     /**
      * Add recipient
      *
-     * @param \FireDIY\PrivateMessageBundle\Entity\Recipient $recipient
+     * @param Recipient $recipient
      *
      * @return Conversation
      */
-    public function addRecipient(\FireDIY\PrivateMessageBundle\Entity\Recipient $recipient)
+    public function addRecipient(Recipient $recipient)
     {
         $this->recipients[] = $recipient;
 
@@ -238,9 +247,9 @@ class Conversation
     /**
      * Remove recipient
      *
-     * @param \FireDIY\PrivateMessageBundle\Entity\Recipient $recipient
+     * @param Recipient $recipient
      */
-    public function removeRecipient(\FireDIY\PrivateMessageBundle\Entity\Recipient $recipient)
+    public function removeRecipient(Recipient $recipient)
     {
         $this->recipients->removeElement($recipient);
     }
@@ -253,5 +262,29 @@ class Conversation
     public function getRecipients()
     {
         return $this->recipients;
+    }
+
+    /**
+     * Set author
+     *
+     * @param UserInterface $author
+     *
+     * @return Conversation
+     */
+    public function setAuthor(UserInterface $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return UserInterface
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }
