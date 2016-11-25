@@ -30,7 +30,7 @@ class Conversation
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="FireDIY\PrivateMessageBundle\Entity\Recipient", mappedBy="conversation")
+     * @ORM\OneToMany(targetEntity="FireDIY\PrivateMessageBundle\Entity\Recipient", mappedBy="conversation", cascade={"persist"})
      * @Assert\NotNull()
      */
     private $recipients;
