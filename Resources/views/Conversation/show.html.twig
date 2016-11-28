@@ -1,0 +1,11 @@
+<h1>{{ conversation.subject }}</h1>
+
+<ul>
+    {# A conversation MUST have messages #}
+    {% for message in conversation.messages %}
+        <li>
+            <p>{{ message.author }}, {{ message.created | date('Y-m-d H:i:s') }}</p>
+            <div>{{ message.body | raw }}</div>
+        </li>
+    {% endfor %}
+</ul>

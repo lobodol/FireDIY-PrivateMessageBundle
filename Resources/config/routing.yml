@@ -2,6 +2,10 @@ fdpm_list_conversations:
     path: /conversation
     defaults: { _controller: FDPrivateMessageBundle:Conversation:list }
 
+fdpm_show_conversation:
+    path: /conversation/{conversation}
+    defaults: { _controller: FDPrivateMessageBundle:Conversation:show }
+
 fdpm_new_conversation:
     path:     /conversation/new
     defaults: { _controller: FDPrivateMessageBundle:Conversation:create }

@@ -17,6 +17,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class ConversationController extends Controller
 {
     /**
+     * Display a conversation.
+     * TODO: a user MUST be a recipient/author of the conversation to see it.
+     * TODO: maybe use a slug instead of conversation's id.
+     *
+     * @param \FireDIY\PrivateMessageBundle\Entity\Conversation $conversation
+     * @return mixed
+     */
+    public function showAction(Conversation $conversation)
+    {
+        // TODO: use pagination for conversation's messages.
+        return $this->render('FDPrivateMessageBundle:Conversation:show.html.twig', array(
+            'conversation' => $conversation,
+        ));
+    }
+
+    /**
      * Display list of current user's conversation.
      *
      * @return \Symfony\Component\HttpFoundation\Response
