@@ -1,9 +1,11 @@
 <ul>
 {% for conversation in conversations %}
     <li>
-        <a href="#">{{ conversation.subject }}</a>
+        <a href="{{ url('fdpm_show_conversation', {'conversation': conversation.id}) }}">{{ conversation.subject }}</a>
     </li>
 {% else %}
-    <li></li>
+    <li>
+        You have no conversation yet.
+    </li>
 {% endfor %}
 </ul>
