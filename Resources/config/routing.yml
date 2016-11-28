@@ -1,0 +1,3 @@
+fdpm_new_conversation:
+    path:     /conversation/new
+    defaults: { _controller: FDPrivateMessageBundle:Conversation:create }
