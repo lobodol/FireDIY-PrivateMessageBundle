@@ -1,0 +1,9 @@
+<ul>
+{% for conversation in conversations %}
+    <li>
+        <a href="#">{{ conversation.subject }}</a>
+    </li>
+{% else %}
+    <li></li>
+{% endfor %}
+</ul>

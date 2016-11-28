@@ -17,6 +17,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class ConversationController extends Controller
 {
     /**
+     * Display list of current user's conversation.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function listAction()
+    {
+        // Get all conversations of current user. TODO: use pagination.
+        $conversations = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('FDPrivateMessageBundle:Conversation')
+            ->findByAuthor($this->getUser());
+
+        return $this->render('FDPrivateMessageBundle:Conversation:list.html.twig', array(
+            'conversations' => $conversations,
+        ));
+    }
+
+    /**
      * Displays form for a new conversation and handle submission.
      *
      * @param Request $request : instance of the current request.

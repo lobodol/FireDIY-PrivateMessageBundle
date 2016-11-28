@@ -1,3 +1,7 @@
+fdpm_list_conversations:
+    path: /conversation
+    defaults: { _controller: FDPrivateMessageBundle:Conversation:list }
+
 fdpm_new_conversation:
     path:     /conversation/new
     defaults: { _controller: FDPrivateMessageBundle:Conversation:create }
