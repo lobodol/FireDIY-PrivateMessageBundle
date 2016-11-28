@@ -1,6 +1,10 @@
 FDPrivateMessageBundle
 ====================
 
+# Requirements
+* Symfony >= 2.8
+* A user class implementing ```Symfony\Component\Security\Core\User\UserInterface```
+
 # Configuration
 Create your own User entity and tell FDPrivateMessageBundle to use it :
 ```
@@ -10,7 +14,7 @@ doctrine:
             Symfony\Component\Security\Core\User\UserInterface: AcmeBundle\Entity\YourUserEntiy
 ```
 
-The only requirement is your User entity must implement the Symfony\Component\Security\Core\User\UserInterface
+The only requirement is your User entity must implement the ```Symfony\Component\Security\Core\User\UserInterface```
 
 # Form
 You are able to override FDPrivateMessageBundle's forms.
@@ -48,6 +52,4 @@ class ConversationType extends BaseType
 
     }
 }
-
-
 ```
