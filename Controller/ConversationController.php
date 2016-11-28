@@ -60,6 +60,8 @@ class ConversationController extends Controller
                 ->getFlashBag()
                 ->add('success', $this->get('translator')->trans('Conversation created'));
 
+            // TODO: dispatch event.
+
             return $this->redirect($this->generateUrl('homepage'));
         }
 
