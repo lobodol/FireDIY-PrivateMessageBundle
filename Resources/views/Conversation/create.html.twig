@@ -1,4 +1,9 @@
+{% trans_default_domain 'FDPrivateMessageBundle' %}
+
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" value="Submit">
+
+    <div>
+        <input type="submit" value="{{ 'conversation.create.submit' | trans }}">
+    </div>
 {{ form_end(form) }}
