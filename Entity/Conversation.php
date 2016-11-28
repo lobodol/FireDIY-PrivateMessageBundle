@@ -30,7 +30,8 @@ class Conversation
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="FireDIY\PrivateMessageBundle\Entity\Recipient", mappedBy="conversation", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Symfony\Component\Security\Core\User\UserInterface", cascade={"persist"})
+     * @ORM\JoinTable(name="recipients")
      * @Assert\NotNull()
      */
     private $recipients;
@@ -234,11 +235,11 @@ class Conversation
     /**
      * Add recipient
      *
-     * @param Recipient $recipient
+     * @param UserInterface $recipient
      *
      * @return Conversation
      */
-    public function addRecipient(Recipient $recipient)
+    public function addRecipient(UserInterface $recipient)
     {
         $this->recipients[] = $recipient;
 
@@ -248,9 +249,9 @@ class Conversation
     /**
      * Remove recipient
      *
-     * @param Recipient $recipient
+     * @param UserInterface $recipient
      */
-    public function removeRecipient(Recipient $recipient)
+    public function removeRecipient(UserInterface $recipient)
     {
         $this->recipients->removeElement($recipient);
     }
