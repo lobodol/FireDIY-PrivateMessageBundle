@@ -5,16 +5,63 @@ FDPrivateMessageBundle
 * Symfony >= 2.8
 * A user class implementing ```Symfony\Component\Security\Core\User\UserInterface```
 
-# Configuration
-Create your own User entity and tell FDPrivateMessageBundle to use it :
+# Translations
+If you wish to use default texts provided in this bundle, you have to make sure you have translator enabled in your config.
 ```
+# app/config/config.yml
+framework:
+    translator: ~
+```
+
+# Installation
+## Step 1: Download FDPrivateMessageBundle using composer
+Require the bundle with composer:
+```
+TODO
+```
+
+## Step 2:  Enable the bundle
+Enable the bundle in the kernel:
+```
+<?php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new FireDIY\PrivateMessageBundle\FDPrivateMessageBundle(),
+        // ...
+    );
+}
+```
+
+## Step 3: Create your User class
+The goal of this bundle is to provide a private message system to allow users communicating between them.
+FDPrivateMessageBundle does not provide a ready-to-use User entity but uses Symfony's UserInterface.
+
+So, you just have to create your own User class implementing ```Symfony\Component\Security\Core\User\UserInterface```.
+You can heaven use FOSUserBundle.
+
+## Step 4: Configure your application's config.yml
+Now you have your User entity, you just have to tell FDPrivateMessageBundle to use it :
+```
+# app/config/config.yml
 doctrine:
     orm:
         resolve_target_entities:
             Symfony\Component\Security\Core\User\UserInterface: AcmeBundle\Entity\YourUserEntiy
 ```
 
-The only requirement is your User entity must implement the ```Symfony\Component\Security\Core\User\UserInterface```
+## Step 5: Import FDPrivateMessageBundle routing files
+Now that you have activated and configured the bundle, all that is left to do is import the FDPrivateMessageBundle routing files.
+
+
+```
+# app/config/routing.yml
+fd_private_message:
+    resource: "@FDPrivateMessageBundle/Resources/config/routing.yml"
+```
 
 # Form
 You are able to override FDPrivateMessageBundle's forms.
@@ -52,4 +99,22 @@ class ConversationType extends BaseType
 
     }
 }
+```
+
+# Override default FDPrivateMessageBundle templates
+## Example: Override the conversation's show.html.twig template
+Just create a new file in ```app/Resources/FDPrivateMessagesBundle/views/Conversation/show.html.twig```
+```
+<h1>Overridden template</h1>
+
+<h2>{{ conversation.subject }}</h2>
+
+<ul>
+    {% for message in conversation.messages %}
+        <li>
+            <p>{{ message.author }}, {{ message.created | date('Y-m-d H:i:s') }}</p>
+            <div>{{ message.body | raw }}</div>
+        </li>
+    {% endfor %}
+</ul>
 ```
