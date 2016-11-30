@@ -1,3 +1,7 @@
 conversation:
     create:
         submit: 'Envoyer'
+
+private_message:
+    create:
+        submit: 'Répondre'

@@ -1,3 +1,5 @@
+{% trans_default_domain 'FDPrivateMessageBundle' %}
+
 <h1>{{ conversation.subject }}</h1>
 
 <ul>
@@ -5,7 +7,13 @@
     {% for message in conversation.messages %}
         <li>
             <p>{{ message.author }}, {{ message.created | date('Y-m-d H:i:s') }}</p>
-            <div>{{ message.body | raw }}</div>
+            <div>{{ message.body }}</div>
         </li>
     {% endfor %}
 </ul>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <input type="submit" value="{{ 'private_message.create.submit' | trans }}">
+{{ form_end(form) }}

@@ -5,6 +5,7 @@ namespace FireDIY\PrivateMessageBundle\Controller;
 use FireDIY\PrivateMessageBundle\Entity\Conversation;
 use FireDIY\PrivateMessageBundle\Entity\PrivateMessage;
 use FireDIY\PrivateMessageBundle\Form\ConversationType;
+use FireDIY\PrivateMessageBundle\Form\PrivateMessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -20,19 +21,38 @@ class ConversationController extends Controller
      * Display a conversation.
      * TODO: maybe use a slug instead of conversation's id.
      *
-     * @param \FireDIY\PrivateMessageBundle\Entity\Conversation $conversation
+     * @param Conversation $conversation : instance of the conversation
+     * @param Request      $request      : instance of the current request.
      * @return mixed
      */
-    public function showAction(Conversation $conversation)
+    public function showAction(Conversation $conversation, Request $request)
     {
         // A user MUST be a recipient/author of the conversation to see it.
         if ($conversation->getAuthor() != $this->getUser() && !in_array($this->getUser(), $conversation->getRecipients()->toArray())) {
             throw $this->createAccessDeniedException('You are not allowed to access this content');
         }
 
+        // Create the answer form.
+        $privateMessage = new PrivateMessage();
+        $privateMessage
+            ->setConversation($conversation)
+            ->setAuthor($this->getUser());
+
+        $form = $this->createForm(PrivateMessageType::class, $privateMessage);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($privateMessage);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('fdpm_show_conversation', ['conversation' => $conversation->getId()]));
+        }
+
         // TODO: use pagination for conversation's messages.
         return $this->render('FDPrivateMessageBundle:Conversation:show.html.twig', array(
             'conversation' => $conversation,
+            'form'         => $form->createView(),
         ));
     }
 
@@ -113,5 +133,4 @@ class ConversationController extends Controller
 
         return $conversation;
     }
-
 }
