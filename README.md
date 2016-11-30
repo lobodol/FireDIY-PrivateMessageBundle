@@ -63,6 +63,13 @@ fd_private_message:
     resource: "@FDPrivateMessageBundle/Resources/config/routing.yml"
 ```
 
+## Step 6: Update your database schema
+Finally, just update your database schema :
+```
+php bin/console doctrine:schema:update --force
+```
+
+
 # Form
 You are able to override FDPrivateMessageBundle's forms.
 
