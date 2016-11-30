@@ -32,7 +32,10 @@ class ConversationValidator
      */
     private static function validateRecipients(Conversation $conversation, ExecutionContextInterface $context)
     {
-        if (in_array($conversation->getAuthor(), $conversation->getRecipients())) {
+        // This could be NULL or array.
+        $recipients = $conversation->getRecipients();
+
+        if (is_array($recipients) && in_array($conversation->getAuthor(), $recipients)) {
             $context
                 ->buildViolation(self::RECIPIENT_VIOLATION)
                 ->atPath('recipients')
