@@ -68,7 +68,7 @@ class ConversationController extends Controller
             ->getDoctrine()
             ->getManager()
             ->getRepository('FDPrivateMessageBundle:Conversation')
-            ->findByAuthor($this->getUser());
+            ->getAllByRecipient($this->getUser());
 
         return $this->render('FDPrivateMessageBundle:Conversation:list.html.twig', array(
             'conversations' => $conversations,
