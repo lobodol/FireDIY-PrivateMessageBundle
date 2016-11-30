@@ -6,6 +6,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class PrivateMessageType
+ * @package FireDIY\PrivateMessageBundle\Form
+ */
 class PrivateMessageType extends AbstractType
 {
     /**
@@ -15,9 +19,6 @@ class PrivateMessageType extends AbstractType
     {
         $builder
             ->add('body')
-//            ->add('created')
-//            ->add('author')
-//            ->add('conversation')
         ;
     }
 
@@ -27,7 +28,7 @@ class PrivateMessageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FireDIY\PrivateMessageBundle\Entity\PrivateMessage'
+            'data_class' => 'FireDIY\PrivateMessageBundle\Entity\PrivateMessage',
         ));
     }
 
@@ -38,6 +39,4 @@ class PrivateMessageType extends AbstractType
     {
         return 'firediy_privatemessagebundle_privatemessage';
     }
-
-
 }

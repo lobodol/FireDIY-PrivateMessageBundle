@@ -6,9 +6,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class ConversationType
+ * @package FireDIY\PrivateMessageBundle\Form
+ */
 class ConversationType extends AbstractType
 {
-
     /**
      * {@inheritdoc}
      */
@@ -17,7 +20,9 @@ class ConversationType extends AbstractType
         $builder
             ->add('recipients')
             ->add('subject')
-            ->add('firstMessage', PrivateMessageType::class);
+            ->add('firstMessage', PrivateMessageType::class, array(
+                'label' => false,
+            ));
     }
 
     /**
@@ -26,7 +31,7 @@ class ConversationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FireDIY\PrivateMessageBundle\Entity\Conversation'
+            'data_class' => 'FireDIY\PrivateMessageBundle\Entity\Conversation',
         ));
     }
 
@@ -37,6 +42,4 @@ class ConversationType extends AbstractType
     {
         return 'firediy_privatemessagebundle_conversation';
     }
-
-
 }

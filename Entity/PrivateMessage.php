@@ -171,4 +171,3 @@ class PrivateMessage
         return $this->created;
     }
 }
-
