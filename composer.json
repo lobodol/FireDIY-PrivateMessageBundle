@@ -10,5 +10,10 @@
             "email": "grobodol@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "FD\\PrivateMessageBundle\\": ""
+        }
+    },
     "require": {}
 }

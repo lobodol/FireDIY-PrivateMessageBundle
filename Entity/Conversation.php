@@ -1,6 +1,6 @@
 <?php
 
-namespace FireDIY\PrivateMessageBundle\Entity;
+namespace FD\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
@@ -12,12 +12,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Conversation
  *
  * @ORM\Table(name="conversation", uniqueConstraints={@UniqueConstraint(name="unique_conversation", columns={"first_message"})})
- * @ORM\Entity(repositoryClass="FireDIY\PrivateMessageBundle\Repository\ConversationRepository")
+ * @ORM\Entity(repositoryClass="FD\PrivateMessageBundle\Repository\ConversationRepository")
  * @UniqueEntity(
  *     fields={"firstMessage"},
  *     message="Cannot duplicate a conversation"
  * )
- * @Assert\Callback({"FireDIY\PrivateMessageBundle\Validator\ConversationValidator", "validate"})
+ * @Assert\Callback({"FD\PrivateMessageBundle\Validator\ConversationValidator", "validate"})
  */
 class Conversation
 {
@@ -65,7 +65,7 @@ class Conversation
     /**
      * @var PrivateMessage
      *
-     * @ORM\OneToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\PrivateMessage", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="FD\PrivateMessageBundle\Entity\PrivateMessage", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL", name="first_message")
      * @Assert\Valid()
      */
@@ -74,14 +74,14 @@ class Conversation
     /**
      * @var PrivateMessage
      *
-     * @ORM\OneToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\PrivateMessage", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="FD\PrivateMessageBundle\Entity\PrivateMessage", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Assert\Valid()
      */
     private $lastMessage;
 
     /**
-     * @ORM\OneToMany(targetEntity="FireDIY\PrivateMessageBundle\Entity\PrivateMessage", mappedBy="conversation")
+     * @ORM\OneToMany(targetEntity="FD\PrivateMessageBundle\Entity\PrivateMessage", mappedBy="conversation")
      */
     private $messages;
 

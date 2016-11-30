@@ -1,6 +1,6 @@
 <?php
 
-namespace FireDIY\PrivateMessageBundle\DependencyInjection;
+namespace FD\PrivateMessageBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

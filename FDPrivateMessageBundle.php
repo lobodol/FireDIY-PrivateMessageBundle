@@ -1,12 +1,12 @@
 <?php
 
-namespace FireDIY\PrivateMessageBundle;
+namespace FD\PrivateMessageBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class FDPrivateMessageBundle
- * @package FireDIY\PrivateMessageBundle
+ * @package FD\PrivateMessageBundle
  */
 class FDPrivateMessageBundle extends Bundle
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace FireDIY\PrivateMessageBundle\Validator;
+namespace FD\PrivateMessageBundle\Validator;
 
-use FireDIY\PrivateMessageBundle\Entity\Conversation;
+use FD\PrivateMessageBundle\Entity\Conversation;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Class ConversationValidator
- * @package FireDIY\PrivateMessageBundle\Validator
+ * @package FD\PrivateMessageBundle\Validator
  */
 class ConversationValidator
 {
