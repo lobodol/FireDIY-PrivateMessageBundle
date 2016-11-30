@@ -22,7 +22,7 @@ TODO
 
 ## Step 2:  Enable the bundle
 Enable the bundle in the kernel:
-```
+```php
 <?php
 // app/AppKernel.php
 
@@ -68,7 +68,7 @@ You are able to override FDPrivateMessageBundle's forms.
 
 In example, you're using FOSUserBundle and want to load only recipients being NOT locked :
 
-```
+```php
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -104,7 +104,7 @@ class ConversationType extends BaseType
 # Override default FDPrivateMessageBundle templates
 ## Example: Override the conversation's show.html.twig template
 Just create a new file in ```app/Resources/FDPrivateMessagesBundle/views/Conversation/show.html.twig```
-```
+```twig
 <h1>Overridden template</h1>
 
 <h2>{{ conversation.subject }}</h2>
