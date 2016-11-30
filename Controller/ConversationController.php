@@ -101,7 +101,7 @@ class ConversationController extends Controller
 
             // TODO: dispatch event.
 
-            return $this->redirect($this->generateUrl('homepage'));
+            return $this->redirect($this->generateUrl('fdpm_list_conversations'));
         }
 
         return $this->render('FDPrivateMessageBundle:Conversation:create.html.twig', array(
