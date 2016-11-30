@@ -1,0 +1,12 @@
+{
+    "name": "firediy/private-message-bundle",
+    "description": "Symfony FDPrivateMessageBundle",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "lobodol",
+            "email": "grobodol@gmail.com"
+        }
+    ],
+    "require": {}
+}
