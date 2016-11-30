@@ -1,6 +1,6 @@
 <?php
 
-namespace FireDIY\PrivateMessageBundle\Repository;
+namespace FD\PrivateMessageBundle\Repository;
 
 /**
  * PrivateMessageRepository

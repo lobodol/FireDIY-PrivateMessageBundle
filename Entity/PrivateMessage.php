@@ -1,6 +1,6 @@
 <?php
 
-namespace FireDIY\PrivateMessageBundle\Entity;
+namespace FD\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * PrivateMessage
  *
  * @ORM\Table(name="private_message")
- * @ORM\Entity(repositoryClass="FireDIY\PrivateMessageBundle\Repository\PrivateMessageRepository")
+ * @ORM\Entity(repositoryClass="FD\PrivateMessageBundle\Repository\PrivateMessageRepository")
  */
 class PrivateMessage
 {
@@ -43,7 +43,7 @@ class PrivateMessage
     /**
      * @var Conversation
      *
-     * @ORM\ManyToOne(targetEntity="FireDIY\PrivateMessageBundle\Entity\Conversation", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="FD\PrivateMessageBundle\Entity\Conversation", inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */

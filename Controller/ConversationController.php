@@ -1,18 +1,18 @@
 <?php
 
-namespace FireDIY\PrivateMessageBundle\Controller;
+namespace FD\PrivateMessageBundle\Controller;
 
-use FireDIY\PrivateMessageBundle\Entity\Conversation;
-use FireDIY\PrivateMessageBundle\Entity\PrivateMessage;
-use FireDIY\PrivateMessageBundle\Form\ConversationType;
-use FireDIY\PrivateMessageBundle\Form\PrivateMessageType;
+use FD\PrivateMessageBundle\Entity\Conversation;
+use FD\PrivateMessageBundle\Entity\PrivateMessage;
+use FD\PrivateMessageBundle\Form\ConversationType;
+use FD\PrivateMessageBundle\Form\PrivateMessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Class ConversationController
- * @package FireDIY\PrivateMessageBundle\Controller
+ * @package FD\PrivateMessageBundle\Controller
  * @Security("has_role('ROLE_USER')")
  */
 class ConversationController extends Controller
@@ -112,7 +112,7 @@ class ConversationController extends Controller
     /**
      * Initialize a new conversation with current user as author.
      *
-     * @return \FireDIY\PrivateMessageBundle\Entity\Conversation
+     * @return \FD\PrivateMessageBundle\Entity\Conversation
      */
     protected function buildConversation()
     {
