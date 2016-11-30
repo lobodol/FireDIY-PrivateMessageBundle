@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     fields={"firstMessage"},
  *     message="Cannot duplicate a conversation"
  * )
+ * @Assert\Callback({"FireDIY\PrivateMessageBundle\Validator\ConversationValidator", "validate"})
  */
 class Conversation
 {

@@ -89,7 +89,6 @@ class ConversationController extends Controller
 
         $form->handleRequest($request);
 
-        // TODO: add custom validation to prevent sending a message to oneself.
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($conversation);
