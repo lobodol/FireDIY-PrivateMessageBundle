@@ -2,6 +2,7 @@
     "name": "firediy/private-message-bundle",
     "description": "Symfony FDPrivateMessageBundle",
     "type": "symfony-bundle",
+    "homepage": "https://github.com/lobodol/FireDIY-PrivateMessageBundle",
     "authors": [
         {
             "name": "lobodol",
