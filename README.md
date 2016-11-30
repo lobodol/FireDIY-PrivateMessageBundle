@@ -17,7 +17,7 @@ framework:
 ## Step 1: Download FDPrivateMessageBundle using composer
 Require the bundle with composer:
 ```
-TODO
+composer require firediy/private-message-bundle dev-master
 ```
 
 ## Step 2:  Enable the bundle
