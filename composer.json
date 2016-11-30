@@ -3,6 +3,7 @@
     "description": "Symfony FDPrivateMessageBundle",
     "type": "symfony-bundle",
     "homepage": "https://github.com/lobodol/FireDIY-PrivateMessageBundle",
+    "license": "MIT",
     "authors": [
         {
             "name": "lobodol",
