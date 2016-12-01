@@ -18,8 +18,14 @@ class ConversationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('recipients')
-            ->add('subject')
+            ->add('recipients', null, array(
+                'label'              => 'form.recipients',
+                'translation_domain' => 'FDPrivateMessageBundle',
+            ))
+            ->add('subject', null, array(
+                'label'              => 'form.subject',
+                'translation_domain' => 'FDPrivateMessageBundle',
+            ))
             ->add('firstMessage', PrivateMessageType::class, array(
                 'label' => false,
             ));

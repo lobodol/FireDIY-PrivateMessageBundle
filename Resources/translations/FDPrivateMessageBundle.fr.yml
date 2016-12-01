@@ -5,3 +5,7 @@ conversation:
 private_message:
     create:
         submit: 'Répondre'
+
+form:
+    recipients: 'Destinataires'
+    subject: 'Objet'
