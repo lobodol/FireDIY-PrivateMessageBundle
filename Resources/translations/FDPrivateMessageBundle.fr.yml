@@ -9,3 +9,4 @@ private_message:
 form:
     recipients: 'Destinataires'
     subject: 'Objet'
+    body: 'Votre message'

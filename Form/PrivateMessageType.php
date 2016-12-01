@@ -18,7 +18,10 @@ class PrivateMessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('body')
+            ->add('body', null, array(
+                'label'              => 'form.body',
+                'translation_domain' => 'FDPrivateMessageBundle',
+            ))
         ;
     }
 
