@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * PrivateMessage
  *
- * @ORM\Table(name="private_message")
+ * @ORM\Table(name="fdpm_private_message")
  * @ORM\Entity(repositoryClass="FD\PrivateMessageBundle\Repository\PrivateMessageRepository")
  */
 class PrivateMessage

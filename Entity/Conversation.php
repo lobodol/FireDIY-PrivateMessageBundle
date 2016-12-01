@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Conversation
  *
- * @ORM\Table(name="conversation", uniqueConstraints={@UniqueConstraint(name="unique_conversation", columns={"first_message"})})
+ * @ORM\Table(name="fdpm_conversation", uniqueConstraints={@UniqueConstraint(name="unique_conversation", columns={"first_message"})})
  * @ORM\Entity(repositoryClass="FD\PrivateMessageBundle\Repository\ConversationRepository")
  * @UniqueEntity(
  *     fields={"firstMessage"},
@@ -32,7 +32,7 @@ class Conversation
 
     /**
      * @ORM\ManyToMany(targetEntity="Symfony\Component\Security\Core\User\UserInterface", cascade={"persist"})
-     * @ORM\JoinTable(name="recipients")
+     * @ORM\JoinTable(name="fdpm_recipients")
      * @Assert\NotNull()
      */
     private $recipients;
