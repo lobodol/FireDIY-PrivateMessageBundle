@@ -4,9 +4,12 @@ namespace FD\PrivateMessageBundle\Controller;
 
 use FD\PrivateMessageBundle\Entity\Conversation;
 use FD\PrivateMessageBundle\Entity\PrivateMessage;
+use FD\PrivateMessageBundle\Event\ConversationEvent;
+use FD\PrivateMessageBundle\FDPrivateMessageEvents;
 use FD\PrivateMessageBundle\Form\ConversationType;
 use FD\PrivateMessageBundle\Form\PrivateMessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -20,6 +23,7 @@ class ConversationController extends Controller
     /**
      * Display a conversation.
      * TODO: maybe use a slug instead of conversation's id.
+     * TODO: use param converter to join pm to the conversation.
      *
      * @param Conversation $conversation : instance of the conversation
      * @param Request      $request      : instance of the current request.
@@ -99,7 +103,10 @@ class ConversationController extends Controller
                 ->getFlashBag()
                 ->add('success', $this->get('translator')->trans('Conversation created'));
 
-            // TODO: dispatch event.
+            /** @var EventDispatcherInterface $dispatcher */
+            $dispatcher = $this->get('event_dispatcher');
+            $event = new ConversationEvent($conversation, $request);
+            $dispatcher->dispatch(FDPrivateMessageEvents::CONVERSATION_CREATED, $event);
 
             return $this->redirect($this->generateUrl('fdpm_list_conversations'));
         }
