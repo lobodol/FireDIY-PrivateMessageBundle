@@ -1,4 +1,8 @@
+{% extends 'FDPrivateMessageBundle::layout.html.twig' %}
+
 {% trans_default_domain 'FDPrivateMessageBundle' %}
+
+{% block fd_private_message_content %}
 
 <h1>{{ conversation.subject }}</h1>
 
@@ -17,3 +21,4 @@
 
     <input type="submit" value="{{ 'private_message.create.submit' | trans }}">
 {{ form_end(form) }}
+{% endblock %}

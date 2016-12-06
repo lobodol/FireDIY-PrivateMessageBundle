@@ -1,7 +1,12 @@
+{% extends 'FDPrivateMessageBundle::layout.html.twig' %}
+
+{% trans_default_domain 'FDPrivateMessageBundle' %}
+
+{% block fd_private_message_content %}
 <ul>
 {% for conversation in conversations %}
     <li>
-        <a href="{{ url('fdpm_show_conversation', {'conversation': conversation.id}) }}">{{ conversation.subject }}</a>
+        <a href="{{ url('fdpm_show_conversation', {'conversation': conversation.id}) }}">{{ conversation.subject }}</a> {{ conversation.created | date('Y-m-d H:i:s') }}
     </li>
 {% else %}
     <li>
@@ -9,3 +14,4 @@
     </li>
 {% endfor %}
 </ul>
+{% endblock %}
