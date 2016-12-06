@@ -36,7 +36,7 @@ public function registerBundles()
 }
 ```
 
-## Step 3: Create your User class
+## Step 3: Create your own User class
 The goal of this bundle is to provide a private message system to allow users communicating between them.
 FDPrivateMessageBundle does not provide a ready-to-use User entity but uses Symfony's UserInterface.
 
@@ -100,7 +100,7 @@ class ConversationType extends BaseType
             'multiple' => true,
             'query_builder => function(EntityRepository $er) {
                 return $er->createQueryBuilder('u')
-                    ->orderBy('u.locked', false');
+                    ->where('u.locked', false');
             },
         ));
 
