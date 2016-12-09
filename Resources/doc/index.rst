@@ -96,9 +96,9 @@ class ConversationType extends BaseType
 
         // Load only users being enabled.
         $builder->add('recipients', EntityType::class, array(
-            'class'    => 'AcmeBundle:YourUserEntity',
-            'multiple' => true,
-            'query_builder => function(EntityRepository $er) {
+            'class'         => 'AcmeBundle:YourUserEntity',
+            'multiple'      => true,
+            'query_builder' => function(EntityRepository $er) {
                 return $er->createQueryBuilder('u')
                     ->where('u.locked', false');
             },
