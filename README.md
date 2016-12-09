@@ -79,7 +79,7 @@ In example, you're using FOSUserBundle and want to load only recipients being NO
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
-use FireDIY\PrivateMessageBundle\Form\ConversationType as BaseType;
+use FD\PrivateMessageBundle\Form\ConversationType as BaseType;
 
 
 // Make your form extends FDPrivateMessageBunde::ConversationType.
