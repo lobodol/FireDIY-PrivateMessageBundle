@@ -110,7 +110,7 @@ class ConversationType extends BaseType
 
 # Override default FDPrivateMessageBundle templates
 ## Example: Override the conversation's show.html.twig template
-Just create a new file in ```app/Resources/FDPrivateMessagesBundle/views/Conversation/show.html.twig```
+Just create a new file in ```app/Resources/FDPrivateMessageBundle/views/Conversation/show.html.twig```
 ```twig
 <h1>Overridden template</h1>
 
