@@ -30,7 +30,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new FireDIY\PrivateMessageBundle\FDPrivateMessageBundle(),
+        new FD\PrivateMessageBundle\FDPrivateMessageBundle(),
         // ...
     );
 }
