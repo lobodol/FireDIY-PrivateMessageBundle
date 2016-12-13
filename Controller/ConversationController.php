@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Class ConversationController
@@ -23,7 +24,10 @@ class ConversationController extends Controller
     /**
      * Display a conversation.
      * TODO: maybe use a slug instead of conversation's id.
-     * TODO: use param converter to join pm to the conversation.
+     * @ParamConverter(name="conversation", class="FDPrivateMessageBundle:Conversation", options={
+     *     "repository_method" = "getOneById",
+     *     "map_method_signature" = true
+     * })
      *
      * @param Conversation $conversation : instance of the conversation
      * @param Request      $request      : instance of the current request.
