@@ -1,4 +1,5 @@
 conversation:
+    recipients: 'Participants'
     create:
         submit: 'Envoyer'
 
