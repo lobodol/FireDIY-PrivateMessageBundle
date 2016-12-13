@@ -6,6 +6,13 @@
 
 <h1>{{ conversation.subject }}</h1>
 
+<div>
+    {{ 'conversation.recipients' | trans }} :
+    {% for recipient in conversation.recipients %}
+        {{ recipient.username }}
+    {% endfor %}
+</div>
+
 <ul>
     {# A conversation MUST have messages #}
     {% for message in conversation.messages %}
