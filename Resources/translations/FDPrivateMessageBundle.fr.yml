@@ -1,6 +1,8 @@
 conversation:
+    back: 'Retour'
     recipients: 'Participants'
     create:
+        new: 'Nouvelle conversation'
         submit: 'Envoyer'
 
 private_message:
