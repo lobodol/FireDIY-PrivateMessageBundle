@@ -3,6 +3,8 @@
 {% trans_default_domain 'FDPrivateMessageBundle' %}
 
 {% block fd_private_message_content %}
+<a href="{{ url('fdpm_new_conversation') }}">{{ 'conversation.create.new' | trans }}</a>
+
 <ul>
 {% for conversation in conversations %}
     <li>
