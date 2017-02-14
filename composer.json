@@ -15,5 +15,9 @@
             "FD\\PrivateMessageBundle\\": ""
         }
     },
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "escapestudios/symfony2-coding-standard": "~2.0"
+    }
 }
