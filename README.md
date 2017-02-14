@@ -1,5 +1,7 @@
 FDPrivateMessageBundle
-====================
+======================
+
+[![Build Status](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle.svg?branch=master)](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle)
 
 # Requirements
 * Symfony >= 2.8
