@@ -43,7 +43,7 @@ The goal of this bundle is to provide a private message system to allow users co
 FDPrivateMessageBundle does not provide a ready-to-use User entity but uses Symfony's UserInterface.
 
 So, you just have to create your own User class implementing ```Symfony\Component\Security\Core\User\UserInterface```.
-You can heaven use FOSUserBundle.
+You can even use FOSUserBundle.
 
 ## Step 4: Configure your application's config.yml
 Now you have your User entity, you just have to tell FDPrivateMessageBundle to use it :
