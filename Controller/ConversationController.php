@@ -38,8 +38,8 @@ class ConversationController extends Controller
      */
     public function showAction(Conversation $conversation, Request $request)
     {
-        // A user MUST be a recipient/author of the conversation to see it.
-        if ($conversation->getAuthor() != $this->getUser() && !in_array($this->getUser(), $conversation->getRecipients()->toArray())) {
+        // A user MUST be a recipient of the conversation to see it.
+        if (!in_array($this->getUser(), $conversation->getRecipients()->toArray())) {
             throw $this->createAccessDeniedException('You are not allowed to access this content');
         }
 
