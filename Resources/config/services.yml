@@ -1,6 +1,6 @@
 services:
     fdpm.listener.leave_conversation:
         class: FD\PrivateMessageBundle\EventSubscriber\LeaveConversationSubscriber
-        arguments: [ "@doctrine.orm.entity_manager" ]
+        arguments: [ "@doctrine.orm.entity_manager", %keep_empty_conversations% ]
         tags:
             - { name: kernel.event_subscriber }

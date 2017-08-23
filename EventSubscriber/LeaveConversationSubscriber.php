@@ -20,13 +20,22 @@ class LeaveConversationSubscriber implements EventSubscriberInterface
     private $em;
 
     /**
+     * Do not delete conversations having no more recipients if set to TRUE.
+     *
+     * @var bool
+     */
+    private $keepEmptyConversations;
+
+    /**
      * LeaveConversationSubscriber constructor.
      *
      * @param EntityManager $entityManager
+     * @param bool          $keepEmptyConversations
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, $keepEmptyConversations)
     {
         $this->em = $entityManager;
+        $this->keepEmptyConversations = $keepEmptyConversations;
     }
 
     /**
@@ -49,7 +58,7 @@ class LeaveConversationSubscriber implements EventSubscriberInterface
         $conversation = $event->getConversation();
 
         // If all recipients have left the conversation, remove it.
-        if (count($conversation->getRecipients()) == 0) {
+        if (!$this->keepEmptyConversations && count($conversation->getRecipients()) == 0) {
             $this->em->remove($conversation);
             $this->em->flush();
         }
