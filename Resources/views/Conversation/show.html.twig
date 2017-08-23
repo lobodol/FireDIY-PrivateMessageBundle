@@ -7,6 +7,7 @@
 <h1>{{ conversation.subject }}</h1>
 
 <a href="{{ url('fdpm_list_conversations') }}">{{ 'conversation.back' | trans }}</a>
+<a href="{{ url('fdpm_leave_conversation', {'conversation': conversation.id}) }}">{{ 'conversation.leave' | trans }}</a>
 
 <div>
 
