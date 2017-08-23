@@ -9,7 +9,7 @@ FDPrivateMessageBundle
 
 # Translations
 If you wish to use default texts provided in this bundle, you have to make sure you have translator enabled in your config.
-```
+```yml
 # app/config/config.yml
 framework:
     translator: ~
@@ -47,7 +47,7 @@ You can even use FOSUserBundle.
 
 ## Step 4: Configure your application's config.yml
 Now you have your User entity, you just have to tell FDPrivateMessageBundle to use it :
-```
+```yml
 # app/config/config.yml
 doctrine:
     orm:
@@ -59,7 +59,7 @@ doctrine:
 Now that you have activated and configured the bundle, all that is left to do is import the FDPrivateMessageBundle routing files.
 
 
-```
+```yml
 # app/config/routing.yml
 fd_private_message:
     resource: "@FDPrivateMessageBundle/Resources/config/routing.yml"
