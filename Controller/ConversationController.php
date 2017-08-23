@@ -103,6 +103,9 @@ class ConversationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Add the current user as recipient anyway.
+            $conversation->addRecipient($this->getUser());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($conversation);
             $em->flush();
