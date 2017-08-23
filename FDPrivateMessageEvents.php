@@ -10,7 +10,7 @@ final class FDPrivateMessageEvents
     /**
      * The CONVERSATION_CREATED event occurs when a user creates a new conversation.
      *
-     * This event allows you to access the created conversation.
+     * This event allows you to access the created conversation & author.
      *
      * @Event("FD\PrivateMessageBundle\Event\ConversationEvent")
      */

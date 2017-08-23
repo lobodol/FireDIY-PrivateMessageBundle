@@ -29,8 +29,8 @@ class ConversationController extends Controller
      *     "map_method_signature" = true
      * })
      *
-     * @param Conversation $conversation : instance of the conversation
-     * @param Request      $request      : instance of the current request.
+     * @param Conversation $conversation : The conversation object.
+     * @param Request      $request      : The current request object.
      * @return mixed
      */
     public function showAction(Conversation $conversation, Request $request)
@@ -102,14 +102,11 @@ class ConversationController extends Controller
             $em->persist($conversation);
             $em->flush();
 
-            $this
-                ->get('session')
-                ->getFlashBag()
-                ->add('success', $this->get('translator')->trans('Conversation created'));
+            $this->addFlash('success', $this->get('translator')->trans('Conversation created'));
 
             /** @var EventDispatcherInterface $dispatcher */
             $dispatcher = $this->get('event_dispatcher');
-            $event = new ConversationEvent($conversation, $request);
+            $event = new ConversationEvent($conversation, $request, $this->getUser());
             $dispatcher->dispatch(FDPrivateMessageEvents::CONVERSATION_CREATED, $event);
 
             return $this->redirect($this->generateUrl('fdpm_list_conversations'));

@@ -5,10 +5,10 @@ namespace FD\PrivateMessageBundle\Event;
 use FD\PrivateMessageBundle\Entity\Conversation;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class ConversationEvent
- * @package FD\PrivateMessageBundle\Event
+ * Class ConversationEvent.
  */
 class ConversationEvent extends Event
 {
@@ -23,17 +23,27 @@ class ConversationEvent extends Event
     protected $conversation;
 
     /**
-     * ConversationEvent constructor.
-     * @param Conversation $conversation
-     * @param Request      $request
+     * @var UserInterface
      */
-    public function __construct(Conversation $conversation, Request $request)
+    protected $user;
+
+    /**
+     * ConversationEvent constructor.
+     *
+     * @param Conversation  $conversation
+     * @param Request       $request
+     * @param UserInterface $user
+     */
+    public function __construct(Conversation $conversation, Request $request, UserInterface $user)
     {
         $this->conversation = $conversation;
-        $this->request = $request;
+        $this->request      = $request;
+        $this->user         = $user;
     }
 
     /**
+     * Get conversation.
+     *
      * @return Conversation
      */
     public function getConversation()
@@ -42,10 +52,22 @@ class ConversationEvent extends Event
     }
 
     /**
+     * Get request.
+     *
      * @return Request
      */
     public function getRequest()
     {
         return $this->request;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return UserInterface
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
