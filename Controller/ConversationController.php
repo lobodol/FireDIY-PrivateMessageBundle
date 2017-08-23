@@ -10,7 +10,9 @@ use FD\PrivateMessageBundle\Form\ConversationType;
 use FD\PrivateMessageBundle\Form\PrivateMessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -31,6 +33,7 @@ class ConversationController extends Controller
      *
      * @param Conversation $conversation : The conversation object.
      * @param Request      $request      : The current request object.
+     *
      * @return mixed
      */
     public function showAction(Conversation $conversation, Request $request)
@@ -67,7 +70,7 @@ class ConversationController extends Controller
     /**
      * Display list of current user's conversation.
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function listAction()
     {
@@ -87,7 +90,8 @@ class ConversationController extends Controller
      * Displays form for a new conversation and handle submission.
      *
      * @param Request $request : instance of the current request.
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @return RedirectResponse|Response
      */
     public function createAction(Request $request)
     {
@@ -115,6 +119,36 @@ class ConversationController extends Controller
         return $this->render('FDPrivateMessageBundle:Conversation:create.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * Make the current user leave the given conversation.
+     *
+     * @ParamConverter(name="conversation", class="FDPrivateMessageBundle:Conversation", options={
+     *     "repository_method" = "getOneById",
+     *     "map_method_signature" = true
+     * })
+     * @param Conversation $conversation : The conversation object.
+     * @param Request      $request      : The current request object.
+     *
+     * @return RedirectResponse
+     */
+    public function leaveAction(Conversation $conversation, Request $request)
+    {
+        $conversation->removeRecipient($this->getUser());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($conversation);
+        $em->flush();
+
+        $this->addFlash('success', $this->get('translator')->trans('You have left the conversation'));
+
+        /** @var EventDispatcherInterface $dispatcher */
+        $dispatcher = $this->get('event_dispatcher');
+        $event      = new ConversationEvent($conversation, $request, $this->getUser());
+        $dispatcher->dispatch(FDPrivateMessageEvents::CONVERSATION_LEFT, $event);
+
+        return $this->redirectToRoute('fdpm_list_conversations');
     }
 
     /**
