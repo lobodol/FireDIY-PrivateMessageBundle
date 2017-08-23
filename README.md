@@ -3,6 +3,10 @@ FDPrivateMessageBundle
 
 [![Build Status](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle.svg?branch=master)](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle)
 
+This bundle provides a conversation system to your users.
+
+[![knpbundles.com](http://knpbundles.com/lobodol/FireDIY-PrivateMessageBundle/badge-short)](http://knpbundles.com/lobodol/FireDIY-PrivateMessageBundle)
+
 # Requirements
 * Symfony >= 2.8
 * A user class implementing ```Symfony\Component\Security\Core\User\UserInterface```
