@@ -128,6 +128,7 @@ class ConversationController extends Controller
     /**
      * Make the current user leave the given conversation.
      *
+     * TODO: perhaps use a submittable form to enforce user to confirm action.
      * @ParamConverter(name="conversation", class="FDPrivateMessageBundle:Conversation", options={
      *     "repository_method" = "getOneById",
      *     "map_method_signature" = true
@@ -157,6 +158,7 @@ class ConversationController extends Controller
 
     /**
      * Initialize a new conversation with current user as author.
+     * TODO: deport in a builder service.
      *
      * @return \FD\PrivateMessageBundle\Entity\Conversation
      */
