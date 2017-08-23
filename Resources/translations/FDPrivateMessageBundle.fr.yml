@@ -1,4 +1,5 @@
 conversation:
+    alone: 'Vous êtes le seul participant à cette conversation.'
     back: 'Retour'
     leave: 'Quitter la conversation'
     recipients: 'Participants'

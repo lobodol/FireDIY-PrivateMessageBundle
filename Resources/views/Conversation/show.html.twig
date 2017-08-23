@@ -9,10 +9,16 @@
 <a href="{{ url('fdpm_list_conversations') }}">{{ 'conversation.back' | trans }}</a>
 
 <div>
-    {{ 'conversation.recipients' | trans }} :
-    {% for recipient in conversation.recipients %}
-        {{ recipient.username }}
-    {% endfor %}
+
+    {% if conversation.recipients | length > 1 %}
+        {{ 'conversation.recipients' | trans }} :
+
+        {% for recipient in conversation.recipients %}
+            {{ recipient.username }}
+        {% endfor %}
+    {% else %}
+        {{ 'conversation.alone' | trans }}
+    {% endif %}
 </div>
 
 <ul>
