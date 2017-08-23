@@ -10,12 +10,15 @@ use FD\PrivateMessageBundle\Form\ConversationType;
 use FD\PrivateMessageBundle\Form\PrivateMessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
- * Class ConversationController
+ * Class ConversationController.
+ *
  * @package FD\PrivateMessageBundle\Controller
  * @Security("has_role('ROLE_USER')")
  */
@@ -29,8 +32,9 @@ class ConversationController extends Controller
      *     "map_method_signature" = true
      * })
      *
-     * @param Conversation $conversation : instance of the conversation
-     * @param Request      $request      : instance of the current request.
+     * @param Conversation $conversation : The conversation object.
+     * @param Request      $request      : The current request object.
+     *
      * @return mixed
      */
     public function showAction(Conversation $conversation, Request $request)
@@ -67,7 +71,7 @@ class ConversationController extends Controller
     /**
      * Display list of current user's conversation.
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function listAction()
     {
@@ -87,7 +91,8 @@ class ConversationController extends Controller
      * Displays form for a new conversation and handle submission.
      *
      * @param Request $request : instance of the current request.
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @return RedirectResponse|Response
      */
     public function createAction(Request $request)
     {
@@ -98,18 +103,18 @@ class ConversationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Add the current user as recipient anyway.
+            $conversation->addRecipient($this->getUser());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($conversation);
             $em->flush();
 
-            $this
-                ->get('session')
-                ->getFlashBag()
-                ->add('success', $this->get('translator')->trans('Conversation created'));
+            $this->addFlash('success', $this->get('translator')->trans('Conversation created'));
 
             /** @var EventDispatcherInterface $dispatcher */
             $dispatcher = $this->get('event_dispatcher');
-            $event = new ConversationEvent($conversation, $request);
+            $event = new ConversationEvent($conversation, $request, $this->getUser());
             $dispatcher->dispatch(FDPrivateMessageEvents::CONVERSATION_CREATED, $event);
 
             return $this->redirect($this->generateUrl('fdpm_list_conversations'));
@@ -121,7 +126,39 @@ class ConversationController extends Controller
     }
 
     /**
+     * Make the current user leave the given conversation.
+     *
+     * TODO: perhaps use a submittable form to enforce user to confirm action.
+     * @ParamConverter(name="conversation", class="FDPrivateMessageBundle:Conversation", options={
+     *     "repository_method" = "getOneById",
+     *     "map_method_signature" = true
+     * })
+     * @param Conversation $conversation : The conversation object.
+     * @param Request      $request      : The current request object.
+     *
+     * @return RedirectResponse
+     */
+    public function leaveAction(Conversation $conversation, Request $request)
+    {
+        $conversation->removeRecipient($this->getUser());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($conversation);
+        $em->flush();
+
+        $this->addFlash('success', $this->get('translator')->trans('You have left the conversation'));
+
+        /** @var EventDispatcherInterface $dispatcher */
+        $dispatcher = $this->get('event_dispatcher');
+        $event      = new ConversationEvent($conversation, $request, $this->getUser());
+        $dispatcher->dispatch(FDPrivateMessageEvents::CONVERSATION_LEFT, $event);
+
+        return $this->redirectToRoute('fdpm_list_conversations');
+    }
+
+    /**
      * Initialize a new conversation with current user as author.
+     * TODO: deport in a builder service.
      *
      * @return \FD\PrivateMessageBundle\Entity\Conversation
      */
