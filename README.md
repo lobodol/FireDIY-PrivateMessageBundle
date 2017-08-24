@@ -1,7 +1,7 @@
 FDPrivateMessageBundle
 ======================
 
-[![Build Status](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle.svg?branch=master)](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle)
+[![Build Status](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle.svg?branch=develop)](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle)
 
 This bundle provides a conversation system to your users.
 
