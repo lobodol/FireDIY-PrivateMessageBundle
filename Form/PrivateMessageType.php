@@ -8,7 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class PrivateMessageType
- * @package FD\PrivateMessageBundle\Form
  */
 class PrivateMessageType extends AbstractType
 {

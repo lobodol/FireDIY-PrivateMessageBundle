@@ -28,6 +28,7 @@ class PrivateMessage
      *
      * @ORM\ManyToOne(targetEntity="Symfony\Component\Security\Core\User\UserInterface")
      * @ORM\JoinColumn(nullable=false)
+     *
      * @Assert\Valid()
      */
     private $author;
@@ -36,6 +37,7 @@ class PrivateMessage
      * @var string
      *
      * @ORM\Column(name="body", type="text")
+     *
      * @Assert\NotBlank()
      */
     private $body;
@@ -45,6 +47,7 @@ class PrivateMessage
      *
      * @ORM\ManyToOne(targetEntity="FD\PrivateMessageBundle\Entity\Conversation", inversedBy="messages", cascade={"remove"})
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     *
      * @Assert\Valid()
      */
     private $conversation;
@@ -53,6 +56,7 @@ class PrivateMessage
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime")
+     *
      * @Assert\DateTime()
      */
     private $created;

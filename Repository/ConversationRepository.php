@@ -14,6 +14,7 @@ class ConversationRepository extends EntityRepository
      * Get all conversations of a user being involved in as recipient or author.
      *
      * @param UserInterface $user : instance of the user.
+     *
      * @return array
      */
     public function getAllByRecipient(UserInterface $user)
@@ -32,7 +33,9 @@ class ConversationRepository extends EntityRepository
      * Related private messages, authors, recipients are loaded by a JOIN statement.
      *
      * @param int $cid : technical ID of the conversation.
+     *
      * @return mixed
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getOneById($cid)

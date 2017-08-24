@@ -5,8 +5,7 @@ namespace FD\PrivateMessageBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class FDPrivateMessageBundle
- * @package FD\PrivateMessageBundle
+ * Class FDPrivateMessageBundle.
  */
 class FDPrivateMessageBundle extends Bundle
 {

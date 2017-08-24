@@ -6,8 +6,7 @@ use FD\PrivateMessageBundle\Entity\Conversation;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
- * Class ConversationValidator
- * @package FD\PrivateMessageBundle\Validator
+ * Class ConversationValidator.
  */
 class ConversationValidator
 {

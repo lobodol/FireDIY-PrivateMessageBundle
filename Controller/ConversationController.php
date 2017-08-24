@@ -19,7 +19,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 /**
  * Class ConversationController.
  *
- * @package FD\PrivateMessageBundle\Controller
  * @Security("has_role('ROLE_USER')")
  */
 class ConversationController extends Controller

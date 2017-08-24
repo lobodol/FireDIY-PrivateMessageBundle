@@ -7,8 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ConversationType
- * @package FD\PrivateMessageBundle\Form
+ * Class ConversationType.
  */
 class ConversationType extends AbstractType
 {

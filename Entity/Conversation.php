@@ -13,10 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="fdpm_conversation", uniqueConstraints={@UniqueConstraint(name="unique_conversation", columns={"first_message"})})
  * @ORM\Entity(repositoryClass="FD\PrivateMessageBundle\Repository\ConversationRepository")
+ *
  * @UniqueEntity(
  *     fields={"firstMessage"},
  *     message="Cannot duplicate a conversation"
  * )
+ *
  * @Assert\Callback({"FD\PrivateMessageBundle\Validator\ConversationValidator", "validate"})
  */
 class Conversation
@@ -33,6 +35,7 @@ class Conversation
     /**
      * @ORM\ManyToMany(targetEntity="Symfony\Component\Security\Core\User\UserInterface", cascade={"persist"})
      * @ORM\JoinTable(name="fdpm_recipients")
+     *
      * @Assert\NotNull()
      */
     private $recipients;
@@ -41,6 +44,7 @@ class Conversation
      * @var string
      *
      * @ORM\Column(name="subject", type="string", length=255)
+     *
      * @Assert\Length(min=10)
      * @Assert\NotBlank()
      */
@@ -50,6 +54,7 @@ class Conversation
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime")
+     *
      * @Assert\DateTime()
      */
     private $created;
@@ -58,6 +63,7 @@ class Conversation
      * @var \Symfony\Component\Security\Core\User\UserInterface
      *
      * @ORM\ManyToOne(targetEntity="Symfony\Component\Security\Core\User\UserInterface")
+     *
      * @Assert\Valid()
      */
     private $author;
@@ -67,6 +73,7 @@ class Conversation
      *
      * @ORM\OneToOne(targetEntity="FD\PrivateMessageBundle\Entity\PrivateMessage", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL", name="first_message")
+     *
      * @Assert\Valid()
      */
     private $firstMessage;
@@ -76,6 +83,7 @@ class Conversation
      *
      * @ORM\OneToOne(targetEntity="FD\PrivateMessageBundle\Entity\PrivateMessage", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     *
      * @Assert\Valid()
      */
     private $lastMessage;
