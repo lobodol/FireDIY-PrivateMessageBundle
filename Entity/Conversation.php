@@ -2,6 +2,7 @@
 
 namespace FD\PrivateMessageBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -33,6 +34,8 @@ class Conversation
     private $id;
 
     /**
+     * @var UserInterface[]|ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Symfony\Component\Security\Core\User\UserInterface", cascade={"persist"})
      * @ORM\JoinTable(name="fdpm_recipients")
      *
@@ -89,6 +92,8 @@ class Conversation
     private $lastMessage;
 
     /**
+     * @var PrivateMessage[]|ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="FD\PrivateMessageBundle\Entity\PrivateMessage", mappedBy="conversation")
      */
     private $messages;
@@ -98,7 +103,9 @@ class Conversation
      */
     public function __construct()
     {
-        $this->created = new \DateTime();
+        $this->created    = new \DateTime();
+        $this->messages   = new ArrayCollection();
+        $this->recipients = new ArrayCollection();
     }
 
     /**
@@ -234,7 +241,7 @@ class Conversation
     /**
      * Get messages
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getMessages()
     {
@@ -268,7 +275,7 @@ class Conversation
     /**
      * Get recipients
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getRecipients()
     {
