@@ -34,7 +34,7 @@ class ConversationValidator
         // This could be NULL or array.
         $recipients = $conversation->getRecipients();
 
-        if (is_array($recipients) && in_array($conversation->getAuthor(), $recipients)) {
+        if ($recipients->contains($conversation->getAuthor())) {
             $context
                 ->buildViolation(self::RECIPIENT_VIOLATION)
                 ->atPath('recipients')
