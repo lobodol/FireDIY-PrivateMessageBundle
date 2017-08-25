@@ -15,6 +15,7 @@ before_script:
 
 script:
     - vendor/bin/phpcs --standard=Symfony --extensions=php --ignore=vendor -n  .
+    - vendor/bin/phpunit --coverage-text --configuration $PWD/phpunit.xml.dist
 
 notifications:
     email: false
