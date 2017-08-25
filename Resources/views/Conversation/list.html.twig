@@ -8,8 +8,15 @@
 <ul>
 {% for conversation in conversations %}
     <li>
-        <a href="{{ url('fdpm_show_conversation', {'conversation': conversation.id}) }}">{{ conversation.subject }}</a> {{ conversation.created | date('Y-m-d H:i:s') }}
-        <a href="{{ url('fdpm_leave_conversation', {'conversation': conversation.id}) }}">{{ 'conversation.leave' | trans }}</a>
+        <p>
+            <a href="{{ url('fdpm_show_conversation', {'conversation': conversation.id}) }}">{{ conversation.subject }}</a> {{ conversation.created | date('Y-m-d H:i:s') }}
+        </p>
+        <p>
+            {{ 'conversation.last_message' | trans }} {{ conversation.lastMessage.created | date('Y-m-d H:i:s') }}
+        </p>
+        <p>
+            <a href="{{ url('fdpm_leave_conversation', {'conversation': conversation.id}) }}">{{ 'conversation.leave' | trans }}</a>
+        </p>
     </li>
 {% else %}
     <li>

@@ -21,6 +21,8 @@ class ConversationRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('c')
             ->join('c.recipients', 'r')
+            ->join('c.lastMessage', 'lm')
+            ->addSelect('lm')
             ->where('r.id = :user')
             ->setParameter('user', $user)
             ->orderBy('c.created', 'DESC');

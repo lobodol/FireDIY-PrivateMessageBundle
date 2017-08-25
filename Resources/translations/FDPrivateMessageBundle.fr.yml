@@ -1,6 +1,7 @@
 conversation:
     alone: 'Vous êtes le seul participant à cette conversation.'
     back: 'Retour'
+    last_message: 'Dernier message'
     leave: 'Quitter la conversation'
     recipients: 'Participants'
     create:
