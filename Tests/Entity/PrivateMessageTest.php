@@ -17,7 +17,7 @@ class PrivateMessageTest extends \PHPUnit_Framework_TestCase
     public function testAuthor()
     {
         /** @var UserInterface $author */
-        $author  = $this->getMock(UserInterface::class);
+        $author  = $this->getMockBuilder(UserInterface::class)->getMock();
         $message = new PrivateMessage();
         $this->assertNull($message->getAuthor());
 

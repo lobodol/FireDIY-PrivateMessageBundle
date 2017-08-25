@@ -18,7 +18,7 @@ class ConversationTypeTest extends TypeTestCase
      */
     public function testSubmitValidData()
     {
-        $recipient = $this->getMock(UserInterface::class);
+        $recipient = $this->getMockBuilder(UserInterface::class)->getMock();
         $message   = new PrivateMessage();
         $expected  = new Conversation();
         $expected->addRecipient($recipient)

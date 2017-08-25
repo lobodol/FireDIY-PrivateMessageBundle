@@ -20,9 +20,9 @@ class LeaveConversationSubscriberTest extends \PHPUnit_Framework_TestCase
     public function testOnConversationLeftRemove()
     {
         /** @var Request $request */
-        $request = $this->getMock(Request::class);
+        $request = $this->getMockBuilder(Request::class)->getMock();
         /** @var UserInterface $user */
-        $user    = $this->getMock(UserInterface::class);
+        $user    = $this->getMockBuilder(UserInterface::class)->getMock();
         $em = $this->getMockBuilder(EntityManager::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -43,9 +43,9 @@ class LeaveConversationSubscriberTest extends \PHPUnit_Framework_TestCase
     public function testOnConversationLeft()
     {
         /** @var Request $request */
-        $request = $this->getMock(Request::class);
+        $request = $this->getMockBuilder(Request::class)->getMock();
         /** @var UserInterface $user */
-        $user    = $this->getMock(UserInterface::class);
+        $user    = $this->getMockBuilder(UserInterface::class)->getMock();
         $em = $this->getMockBuilder(EntityManager::class)
             ->disableOriginalConstructor()
             ->getMock();

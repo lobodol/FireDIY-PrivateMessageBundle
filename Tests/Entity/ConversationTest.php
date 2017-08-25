@@ -85,7 +85,7 @@ class ConversationTest extends \PHPUnit_Framework_TestCase
      */
     public function testRecipients()
     {
-        $recipient    = $this->getMock(UserInterface::class);
+        $recipient    = $this->getMockBuilder(UserInterface::class)->getMock();
         $conversation = new Conversation();
         $this->assertEmpty($conversation->getRecipients());
 
@@ -101,7 +101,7 @@ class ConversationTest extends \PHPUnit_Framework_TestCase
      */
     public function testAuthor()
     {
-        $author       = $this->getMock(UserInterface::class);
+        $author       = $this->getMockBuilder(UserInterface::class)->getMock();
         $conversation = new Conversation();
         $this->assertNull($conversation->getAuthor());
 
