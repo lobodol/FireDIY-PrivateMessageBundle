@@ -13,6 +13,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class ConversationTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Test id's getter.
+     */
+    public function testId()
+    {
+        $conversation = new Conversation();
+        $this->assertNull($conversation->getId());
+    }
+
+    /**
      * Test subject's getter/setter.
      */
     public function testSubject()

@@ -12,6 +12,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class PrivateMessageTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Test id's getter.
+     */
+    public function testId()
+    {
+        $message = new PrivateMessage();
+        $this->assertNull($message->getId());
+    }
+
+    /**
      * Test getter/setter of field author.
      */
     public function testAuthor()
