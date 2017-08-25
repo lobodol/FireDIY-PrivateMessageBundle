@@ -61,7 +61,8 @@ class LeaveConversationSubscriberTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $em->expects($this->never())->method('remove');
-        $em->expects($this->never())->method('flush');
+        $em->expects($this->once())->method('persist');
+        $em->expects($this->once())->method('flush');
 
         $conversation = new Conversation();
         $conversation->addRecipient($user);
