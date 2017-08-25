@@ -94,7 +94,7 @@ class Conversation
     /**
      * @var PrivateMessage[]|ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="FD\PrivateMessageBundle\Entity\PrivateMessage", mappedBy="conversation")
+     * @ORM\OneToMany(targetEntity="FD\PrivateMessageBundle\Entity\PrivateMessage", mappedBy="conversation", cascade={"persist"})
      */
     private $messages;
 
