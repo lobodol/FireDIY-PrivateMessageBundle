@@ -31,6 +31,6 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
         "escapestudios/symfony2-coding-standard": "3.x-dev",
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "^5.7"
     }
 }
