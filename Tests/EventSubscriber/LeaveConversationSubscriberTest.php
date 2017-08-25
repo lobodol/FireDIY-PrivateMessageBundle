@@ -15,6 +15,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class LeaveConversationSubscriberTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Test LeaveConversationSubscriber::getSubscribedEvents().
+     */
+    public function testSubscribedEvents()
+    {
+        $expected = ['fd_private_message.conversation.left' => 'onConversationLeft'];
+
+        $this->assertEquals($expected, LeaveConversationSubscriber::getSubscribedEvents());
+    }
+
+    /**
      * Test onConversationLeft with a conversation having no more recipients.
      */
     public function testOnConversationLeftRemove()
