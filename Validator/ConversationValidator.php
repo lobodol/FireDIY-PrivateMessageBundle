@@ -18,19 +18,21 @@ class ConversationValidator
     /**
      * Entry point of the conversation's validation process.
      *
-     * @param Conversation              $conversation : instance of the conversation to validate.
-     * @param ExecutionContextInterface $context      : instance of the execution context.
+     * @param Conversation              $conversation : The conversation object to validate.
+     * @param ExecutionContextInterface $context      : The execution context object.
      */
     public static function validate(Conversation $conversation, ExecutionContextInterface $context)
     {
-        self::validateRecipients($conversation, $context);
+        if ($context->getGroup() == 'creation') {
+            self::validateRecipients($conversation, $context);
+        }
     }
 
     /**
      * Make sure the author of the conversation is not sending a message to himself.
      *
-     * @param Conversation              $conversation : instance of the conversation to validate.
-     * @param ExecutionContextInterface $context      : instance of the execution context.
+     * @param Conversation              $conversation : The conversation object to validate.
+     * @param ExecutionContextInterface $context      : The execution context object.
      */
     private static function validateRecipients(Conversation $conversation, ExecutionContextInterface $context)
     {
