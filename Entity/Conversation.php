@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     message="Cannot duplicate a conversation"
  * )
  *
- * @Assert\Callback({"FD\PrivateMessageBundle\Validator\ConversationValidator", "validate"})
+ * @Assert\Callback(callback={"FD\PrivateMessageBundle\Validator\ConversationValidator", "validate"}, groups={"Default", "creation", "edition"})
  */
 class Conversation
 {
