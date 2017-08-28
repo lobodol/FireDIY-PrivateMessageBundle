@@ -47,6 +47,8 @@ class PrivateMessage
      *
      * @ORM\ManyToOne(targetEntity="FD\PrivateMessageBundle\Entity\Conversation", inversedBy="messages", cascade={"remove"})
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     *
+     * @Assert\Valid()
      */
     private $conversation;
 
