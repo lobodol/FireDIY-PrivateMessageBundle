@@ -10,6 +10,9 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class ConversationValidator
 {
+    /**
+     * Error message when user set himself as recipient of the conversation.
+     */
     const RECIPIENT_VIOLATION = 'You cannot send a message to yourself';
 
     /**
@@ -31,7 +34,6 @@ class ConversationValidator
      */
     private static function validateRecipients(Conversation $conversation, ExecutionContextInterface $context)
     {
-        // This could be NULL or array.
         $recipients = $conversation->getRecipients();
 
         if ($recipients->contains($conversation->getAuthor())) {
