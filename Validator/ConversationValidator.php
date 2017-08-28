@@ -16,6 +16,16 @@ class ConversationValidator
     const RECIPIENT_VIOLATION = 'You cannot send a message to yourself';
 
     /**
+     * Error message when user selected more than MAX_RECIPIENTS recipients.
+     */
+    const RECIPIENT_NUMBER_VIOLATION = 'You cannot add more than %d recipients';
+
+    /**
+     * Maximum number of recipients for a conversation.
+     */
+    const MAX_RECIPIENTS = 7;
+
+    /**
      * Entry point of the conversation's validation process.
      *
      * @param Conversation              $conversation : The conversation object to validate.
@@ -26,6 +36,8 @@ class ConversationValidator
         if ($context->getGroup() == 'creation') {
             self::validateRecipients($conversation, $context);
         }
+
+        self::validateRecipientsNumber($conversation, $context);
     }
 
     /**
@@ -41,6 +53,30 @@ class ConversationValidator
         if ($recipients->contains($conversation->getAuthor())) {
             $context
                 ->buildViolation(self::RECIPIENT_VIOLATION)
+                ->atPath('recipients')
+                ->addViolation();
+        }
+    }
+
+    /**
+     * Make sure author has not selected too much recipients.
+     *
+     * @param Conversation              $conversation : The conversation object to validate.
+     * @param ExecutionContextInterface $context      : The context object.
+     */
+    private static function validateRecipientsNumber(Conversation $conversation, ExecutionContextInterface $context)
+    {
+        $max = self::MAX_RECIPIENTS;
+
+        // When conversation has been created, author is part of the recipients.
+        if ($context->getGroup() != 'creation') {
+            // Thus, there can be max+1 recipients.
+            $max += 1;
+        }
+
+        if ($conversation->getRecipients()->count() > $max) {
+            $context
+                ->buildViolation(sprintf(self::RECIPIENT_NUMBER_VIOLATION, self::MAX_RECIPIENTS))
                 ->atPath('recipients')
                 ->addViolation();
         }
