@@ -30,6 +30,7 @@ class ConversationController extends Controller
      *     "repository_method" = "getOneById",
      *     "map_method_signature" = true
      * })
+     * @Security("is_granted('view', conversation)")
      *
      * @param Conversation $conversation : The conversation object.
      * @param Request      $request      : The current request object.
@@ -38,11 +39,6 @@ class ConversationController extends Controller
      */
     public function showAction(Conversation $conversation, Request $request)
     {
-        // A user MUST be a recipient/author of the conversation to see it.
-        if ($conversation->getAuthor() != $this->getUser() && !in_array($this->getUser(), $conversation->getRecipients()->toArray())) {
-            throw $this->createAccessDeniedException('You are not allowed to access this content');
-        }
-
         // Create the answer form.
         $privateMessage = new PrivateMessage();
         $privateMessage
