@@ -4,3 +4,9 @@ services:
         arguments: [ "@doctrine.orm.entity_manager" ]
         tags:
             - { name: kernel.event_subscriber }
+
+    fdpm.conversation_voter:
+        class: FD\PrivateMessageBundle\Security\ConversationVoter
+        public: false
+        tags:
+            - { name: security.voter }
