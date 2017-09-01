@@ -2,6 +2,7 @@ FDPrivateMessageBundle
 ======================
 
 [![Build Status](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle.svg?branch=master)](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle)
+[![Coverage Status](https://coveralls.io/repos/github/lobodol/FireDIY-PrivateMessageBundle/badge.svg?branch=master)](https://coveralls.io/github/lobodol/FireDIY-PrivateMessageBundle?branch=master)
 [![Total Downloads](https://poser.pugx.org/firediy/private-message-bundle/downloads.svg)](https://packagist.org/packages/firediy/private-message-bundle)
 
 This bundle provides a conversation system to your users.
