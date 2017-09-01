@@ -1,6 +1,6 @@
 <?php
 
-namespace FD\PrivateMessageBundle\Form;
+namespace FD\PrivateMessageBundle\Form\Type;
 
 use FD\PrivateMessageBundle\Entity\Conversation;
 use Symfony\Component\Form\AbstractType;

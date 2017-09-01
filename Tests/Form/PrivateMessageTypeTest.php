@@ -3,7 +3,7 @@
 namespace FD\PrivateMessageBundle\Tests\Form;
 
 use FD\PrivateMessageBundle\Entity\PrivateMessage;
-use FD\PrivateMessageBundle\Form\PrivateMessageType;
+use FD\PrivateMessageBundle\Form\Type\PrivateMessageType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**

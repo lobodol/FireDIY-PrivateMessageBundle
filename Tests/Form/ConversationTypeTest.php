@@ -4,7 +4,7 @@ namespace FD\PrivateMessageBundle\Tests\Form;
 
 use FD\PrivateMessageBundle\Entity\Conversation;
 use FD\PrivateMessageBundle\Entity\PrivateMessage;
-use FD\PrivateMessageBundle\Form\ConversationType;
+use FD\PrivateMessageBundle\Form\Type\ConversationType;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Security\Core\User\UserInterface;
 
