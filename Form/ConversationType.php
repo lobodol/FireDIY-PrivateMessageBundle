@@ -63,7 +63,7 @@ class ConversationType extends AbstractType
         /** @var Conversation $conversation */
         $conversation = $form->getData();
 
-        if ($conversation->getId() == null) {
+        if ($conversation->getId() === null) {
             return ['creation'];
         }
 
