@@ -11,11 +11,15 @@ matrix:
 before_script:
     - composer self-update
     - composer install
+    - mkdir -p build/logs
     - vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard
 
 script:
     - vendor/bin/phpcs --standard=Symfony --extensions=php --ignore=vendor -n  .
-    - vendor/bin/phpunit --coverage-text --configuration $PWD/phpunit.xml.dist
+    - vendor/bin/phpunit --coverage-clover build/logs/clover.xml --configuration $PWD/phpunit.xml.dist
+
+after_success:
+    - travis_retry php vendor/bin/coveralls -v
 
 notifications:
     email: false

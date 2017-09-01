@@ -31,6 +31,7 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
         "escapestudios/symfony2-coding-standard": "3.x-dev",
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^5.7",
+        "satooshi/php-coveralls": "^1.0"
     }
 }
