@@ -4,7 +4,7 @@ FDPrivateMessageBundle
 [![Build Status](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle.svg?branch=master)](https://travis-ci.org/lobodol/FireDIY-PrivateMessageBundle)
 [![Coverage Status](https://coveralls.io/repos/github/lobodol/FireDIY-PrivateMessageBundle/badge.svg?branch=master)](https://coveralls.io/github/lobodol/FireDIY-PrivateMessageBundle?branch=master)
 [![Total Downloads](https://poser.pugx.org/firediy/private-message-bundle/downloads.svg)](https://packagist.org/packages/firediy/private-message-bundle)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/61a348d6-a8a9-4812-8dac-bbb4991bf42c/mini.png)](https://insight.sensiolabs.com/projects/61a348d6-a8a9-4812-8dac-bbb4991bf42c)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/76f67c3c-f610-4e3f-ba9c-fce81ef73869/mini.png)](https://insight.sensiolabs.com/projects/76f67c3c-f610-4e3f-ba9c-fce81ef73869)
 
 This bundle provides a conversation system to your users.
 
