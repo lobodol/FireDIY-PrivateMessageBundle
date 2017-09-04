@@ -25,7 +25,7 @@ class ConversationController extends Controller
 {
     /**
      * Display a conversation.
-     * TODO: maybe use a slug instead of conversation's id.
+     *
      * @ParamConverter(name="conversation", class="FDPrivateMessageBundle:Conversation", options={
      *     "repository_method" = "getOneById",
      *     "map_method_signature" = true
@@ -56,7 +56,6 @@ class ConversationController extends Controller
             return $this->redirect($this->generateUrl('fdpm_show_conversation', ['conversation' => $conversation->getId()]));
         }
 
-        // TODO: use pagination for conversation's messages.
         return $this->render('FDPrivateMessageBundle:Conversation:show.html.twig', array(
             'conversation' => $conversation,
             'form'         => $form->createView(),
@@ -70,7 +69,7 @@ class ConversationController extends Controller
      */
     public function listAction()
     {
-        // Get all conversations of current user. TODO: use pagination.
+        // Get all conversations of current user.
         $conversations = $this
             ->getDoctrine()
             ->getManager()
@@ -123,7 +122,6 @@ class ConversationController extends Controller
     /**
      * Make the current user leave the given conversation.
      *
-     * TODO: perhaps use a submittable form to enforce user to confirm action.
      * @ParamConverter(name="conversation", class="FDPrivateMessageBundle:Conversation", options={
      *     "repository_method" = "getOneById",
      *     "map_method_signature" = true
@@ -153,7 +151,6 @@ class ConversationController extends Controller
 
     /**
      * Initialize a new conversation with current user as author.
-     * TODO: deport in a builder service.
      *
      * @return \FD\PrivateMessageBundle\Entity\Conversation
      */
