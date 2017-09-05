@@ -3,6 +3,7 @@ conversation:
     back: 'Retour'
     last_message: 'Dernier message'
     leave: 'Quitter la conversation'
+    none: "Vous n'avez pas de message."
     recipients: 'Participants'
     create:
         new: 'Nouvelle conversation'
