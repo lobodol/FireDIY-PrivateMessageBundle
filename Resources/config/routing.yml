@@ -9,11 +9,7 @@ fdpm_new_conversation:
 fdpm_show_conversation:
     path: /conversation/{conversation}
     defaults: { _controller: FDPrivateMessageBundle:Conversation:show }
-    requirements:
-        conversation: \d+
 
 fdpm_leave_conversation:
     path: /conversation/{conversation}/leave
     defaults: { _controller: FDPrivateMessageBundle:Conversation:leave }
-    requirements:
-        conversation: \d+
