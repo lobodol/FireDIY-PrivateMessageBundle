@@ -26,7 +26,8 @@
         "symfony/templating": "^2.7 || ^3.0",
         "symfony/twig-bundle": "^2.7 || ^3.0",
         "symfony/validator": "^2.7 || ^3.0",
-        "twig/twig": "^1.28 || ^2.0"
+        "twig/twig": "^1.28 || ^2.0",
+        "symfony/symfony": "^3.3"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
