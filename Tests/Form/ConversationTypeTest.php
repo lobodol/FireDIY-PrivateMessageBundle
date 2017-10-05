@@ -45,4 +45,25 @@ class ConversationTypeTest extends TypeTestCase
             $this->assertArrayHasKey($key, $children);
         }
     }
+
+    /**
+     * Test ConversationType::determineValidationGroups().
+     */
+    public function testDetermineValidationGroups()
+    {
+        // Test with a new conversation object (having no ID yet).
+        $conversation  = $this->getMockBuilder(Conversation::class)->getMock();
+        $form          = new ConversationType();
+        $formInterface = $this->factory->create(ConversationType::class, $conversation);
+        $actual        = $form->determineValidationGroups($formInterface);
+
+        $this->assertEquals(['creation'], $actual);
+
+        // Test with an existing conversation (having an ID).
+        $conversation->method('getId')->willReturn(1);
+        $formInterface = $this->factory->create(ConversationType::class, $conversation);
+        $actual        = $form->determineValidationGroups($formInterface);
+
+        $this->assertEquals(['edition'], $actual);
+    }
 }
